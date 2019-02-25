@@ -1,0 +1,42 @@
+{
+  "code": 0,
+  "message": null,
+  "success": true,
+  "data": {
+    "components": [
+      "welcome",
+      "userinfo",
+      "end"
+    ],
+    "welcome": {
+      "photo": "/api/users/boy067/photo.png",
+      "footertext":{
+        "title": "WELCOME",
+        "content": "Create A Happy Life With Me"
+      }
+    },
+    "end": {
+      "footertext":{
+        "title": "WELCOME",
+        "content": "Create A Happy Life With Me"
+      }
+    },
+    "userinfo": {
+      "content": [
+        "姓名: 原彪",
+        "年龄: 31(1987属兔)",
+        "学历: 本科",
+        "身高: 173cm",
+        "户籍: 山西/运城/临猗/牛杜",
+        "工作地点: 北京",
+        "工作职务: WEB前端开发",
+        "期望女方: 理性持重、无婚史、学历大专+",
+        "手机号码: 13821508852(微信号同)"
+      ],
+      "footertext":{
+        "title": "WELCOME",
+        "content": "Create A Happy Life With Me"
+      }
+    }
+  }
+}

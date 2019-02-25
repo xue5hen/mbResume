@@ -6,21 +6,22 @@
     .page-body
       transition(name="zoom",enter-active-class="animated zoomInUp",leave-active-class="animated zoomOutUp")
         .img-box(v-if="show")
-          img(src="../assets/imgs/yuanbiao.png",alt="头像")
+          img(:src="photoSrc",alt="头像")
     .page-footer
       img.buildings(src="../assets/imgs/buildings.svg",:class="{show: show}")
       .page-footer-text-box
         transition(name="fade",enter-active-class="animated fadeIn",leave-active-class="animated fadeOut")
           .page-footer-text(v-if="show")
-            .h2 WELCOME
-            p Create A Happy Life With Me
+            .h2 {{footerText.title}}
+            p {{footerText.content}}
         .page-footer-next-btn(@click="$emit('slideNext')")
           img(src="../assets/imgs/next.png")
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-  name: 'mySwiperSlide0',
+  name: 'welcome',
   data () {
     return {
       title: [
@@ -31,6 +32,17 @@ export default {
         {text: '历', color: '#fff'}
       ],
       show: false
+    }
+  },
+  computed: {
+    ...mapState(['userInfo', 'baseUrl']),
+    photoSrc () {
+      let result = this.baseUrl + (this.userInfo.welcome || {})['photo']
+      return result
+    },
+    footerText () {
+      let result = (this.userInfo.welcome || {})['footertext'] || {}
+      return result
     }
   },
   methods: {
@@ -47,6 +59,7 @@ export default {
 <style lang="scss" scoped>
   .page {
     padding-top: 7rem;
+    background: #f3ddd7;
     .page-header {
       width: 100%;
       height: 4rem;

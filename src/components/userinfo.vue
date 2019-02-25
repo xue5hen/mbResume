@@ -11,54 +11,40 @@
               ul(v-for="(v,i) in contentCircleArr",:key="i",:style="{transform:'rotateY(' + i * 15 + 'deg)'}")
                 li(v-for="(word,index) in v",:key="index",:style="word.style") {{word.value}}
           .content-panel(v-else-if="show && isPanelShow",key="contentPanel")
-            p 编号: 男067
-            p 姓名: 原彪
-            p 年龄: 31(1987属兔)
-            p 学历: 本科
-            p 身高: 173cm
-            p 户籍: 山西/运城/临猗/牛杜
-            p 工作地点: 北京
-            p 工作职务: WEB前端开发
-            p 期望女方: 理性持重、无婚史、大专+
-            p 手机号码: 13821508852(微信号同)
+            p(v-for="(v,i) in content",:key="i") {{v}}
     .page-footer
       .page-footer-text-box
         transition(name="fade",enter-active-class="animated fadeIn",leave-active-class="animated fadeOut")
           .page-footer-text(v-if="show")
-            .h2 WELCOME
-            p Create A Happy Life With Me
+            .h2 {{footerText.title}}
+            p {{footerText.content}}
         .page-footer-next-btn(@click="$emit('slideNext')")
           img(src="../assets/imgs/next.png")
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-  name: 'mySwiperSlide1',
+  name: 'userinfo',
   data () {
     return {
-      content: `
-        编号: 男067
-        姓名: 原彪
-        年龄: 31(1987属兔)
-        星座: 处女座
-        学历: 本科
-        身高: 173cm
-        户籍: 山西/运城/临猗/牛杜
-        工作地点: 北京
-        工作职务: WEB前端开发
-        期望女方: 理性持重；无婚史；有眼缘；学历大专+。
-        手机号码: 13821508852(微信号同)
-        备注: 若性格三观很相合，任何地区发展均可取舍。
-      `,
       circleR: 150,
       show: false,
       isPanelShow: false
     }
   },
   computed: {
+    ...mapState(['userInfo', 'baseUrl']),
+    content () {
+      return (this.userInfo.userinfo || {})['content'] || []
+    },
+    footerText () {
+      let result = (this.userInfo.userinfo || {})['footertext'] || {}
+      return result
+    },
     contentCircleArr () {
       let result = []
-      let content = this.content
+      let content = this.content.join('')
       content = content.replace(/[^\u4e00-\u9fa5]/gi, '')
       if (content.length < 360) {
         content = content.padEnd(360, content || '字数不够我来凑数')
@@ -98,6 +84,7 @@ export default {
 <style lang="scss" scoped>
   $titleH: 3.6rem;
   .page {
+    background: #aad7f8;
     .page-body {
       display: flex;
       flex-direction: column;

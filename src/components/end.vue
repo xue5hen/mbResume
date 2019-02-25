@@ -1,5 +1,5 @@
 <template lang="pug">
-  .page.page-slide-2.text-center
+  .page.end.text-center
     .page-header
     .page-body
       .content-box
@@ -10,21 +10,27 @@
       .page-footer-text-box
         transition(name="fade",enter-active-class="animated fadeIn",leave-active-class="animated fadeOut")
           .page-footer-text(v-if="show")
-            .h2 WELCOME
-            p Create A Happy Life With Me
-        //- .page-footer-next-btn(@click="$emit('slideNext')")
-          img(src="../assets/imgs/next.png")
+            .h2 {{footerText.title}}
+            p {{footerText.content}}
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import {getSwingsSVG} from '../services/ajax'
 export default {
-  name: 'mySwiperSlide2',
+  name: 'end',
   data () {
     return {
       smokeContent: ` 韶华易逝，莫负流年`,
       show: false,
       svgHtml: ''
+    }
+  },
+  computed: {
+    ...mapState(['userInfo']),
+    footerText () {
+      let result = (this.userInfo.end || {})['footertext'] || {}
+      return result
     }
   },
   methods: {
@@ -54,7 +60,8 @@ export default {
 </script>
 
 <style lang="scss">
-  .page-slide-2 {
+  .end {
+    background: #e242a2;
     .page-body {
       display: flex;
       flex-direction: column;
