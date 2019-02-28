@@ -10,10 +10,11 @@
     .page-footer
       img.buildings(src="../assets/imgs/buildings.svg",:class="{show: show}")
       .page-footer-text-box
-        transition(name="fade",enter-active-class="animated fadeIn",leave-active-class="animated fadeOut")
-          .page-footer-text(v-if="show")
-            .h2 {{footerText.title}}
-            p {{footerText.content}}
+        .page-footer-text
+          transition(name="fade",enter-active-class="animated fadeInLeft",leave-active-class="animated fadeOutLeft")
+            .h2(v-if="show") {{footerText.title}}
+          transition(name="fade",enter-active-class="animated fadeInRight",leave-active-class="animated fadeOutRight")
+            p(v-if="show") {{footerText.content}}
         .page-footer-next-btn(@click="$emit('slideNext')")
           img(src="../assets/imgs/next.png")
 </template>

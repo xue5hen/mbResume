@@ -1,17 +1,12 @@
 <template lang="pug">
-  .page.text-center
+  .page.page-familyinfo.text-center
     .page-header
     .page-body
       .content-box
         .content-title
           .h3 {{title}}
-        transition(name="myzoom",mode="out-in")
-          .content-circle(v-if="show && !isPanelShow",key="contentCircle")
-            .circle-word-box
-              ul(v-for="(v,i) in contentCircleArr",:key="i",:style="{transform:'rotateY(' + i * 15 + 'deg)'}")
-                li(v-for="(word,index) in v",:key="index",:style="word.style") {{word.value}}
-          .content-panel(v-else-if="show && isPanelShow",key="contentPanel")
-            p(v-for="(v,i) in content",:key="i") {{v}}
+        .content-main
+          p(v-if="show",v-for="(v,i) in content",:key="i") {{v}}
     .page-footer
       .page-footer-text-box
         .page-footer-text
@@ -26,60 +21,36 @@
 <script>
 import {mapState} from 'vuex'
 export default {
-  name: 'userinfo',
+  name: 'familyinfo',
   data () {
     return {
-      circleR: 150,
-      show: false,
-      isPanelShow: false
+      show: false
     }
   },
   computed: {
     ...mapState(['userInfo', 'baseUrl']),
     title () {
-      return (this.userInfo.userinfo || {})['title'] || ''
+      return (this.userInfo.familyinfo || {})['title'] || ''
     },
     content () {
-      return (this.userInfo.userinfo || {})['content'] || []
+      return (this.userInfo.familyinfo || {})['content'] || []
     },
     footerText () {
-      let result = (this.userInfo.userinfo || {})['footertext'] || {}
-      return result
-    },
-    contentCircleArr () {
-      let result = []
-      let content = this.content.join('')
-      content = content.replace(/[^\u4e00-\u9fa5]/gi, '')
-      if (content.length < 360) {
-        content = content.padEnd(360, content || '字数不够我来凑数')
-      }
-      let unitX = (Math.PI / 180) * 12
-      let r = this.circleR
-      for (let i = 0; i < 12; i++) {
-        let arr = []
-        for (let j = 0; j < 30; j++) {
-          let word = {}
-          word.value = content[i * 30 + j] || 'YB'
-          word.style = {
-            transform: `translate3d(${Math.cos(j * unitX) * r}px,${-Math.sin(j * unitX) * r}px,0px) rotateZ(-${j * 12}deg) rotateY(-90deg)`
-          }
-          arr.push(word)
-        }
-        result.push(arr)
-      }
+      let result = (this.userInfo.familyinfo || {})['footertext'] || {}
       return result
     }
   },
   methods: {
     pageShow () {
       this.show = true
-      setTimeout(() => {
-        this.isPanelShow = true
-      }, 1500)
+      this.$nextTick(() => {
+        let text = new SplitText(document.querySelectorAll('.page-familyinfo .content-main p'), {type: 'chars'})
+        let tl = new TimelineMax()
+        tl.staggerFrom(text.chars, 0.8, {opacity:0, scale:0, y:80, rotationX:180, transformOrigin: "0% 50% -50", ease:Back.easeOut}, 0.01)
+      })
     },
     pageHide () {
       this.show = false
-      this.isPanelShow = false
     }
   }
 }
@@ -88,7 +59,7 @@ export default {
 <style lang="scss" scoped>
   $titleH: 3.6rem;
   .page {
-    background: #aad7f8;
+    background: #EDD0BE;
     .page-body {
       display: flex;
       flex-direction: column;
@@ -132,29 +103,7 @@ export default {
             line-height: $titleH;
           }
         }
-        .content-circle {
-          padding: 150px 50%;
-          transform-style: preserve-3d;
-          perspective: 900px;
-          .circle-word-box {
-            transform-style: preserve-3d;
-            font-size: 1.2rem;
-            font-weight: bold;
-            animation: circleRotate 10s linear infinite;
-            ul {
-              position: relative;
-              transform-style: preserve-3d;
-              li {
-                position: absolute;
-              }
-            }
-          }
-          @keyframes circleRotate {
-            0% {transform: rotateY(0deg) scale(1);}
-            100% {transform: rotateY(360deg) scale(1);}
-          }
-        }
-        .content-panel {
+        .content-main {
           flex-grow: 1;
           position: relative;
           font-size: 1.2rem;
@@ -163,7 +112,7 @@ export default {
       }
     }
     .page-footer {
-      background: #3a5fe4;
+      background: #E03636;
     }
   }
 </style>

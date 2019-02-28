@@ -8,13 +8,17 @@
 import {mapState, mapMutations} from 'vuex'
 import http from '@/utils/http'
 import welcome from '@/components/welcome'
+import familyinfo from '@/components/familyinfo'
 import userinfo from '@/components/userinfo'
+import aboutme from '@/components/aboutme'
 import end from '@/components/end'
 export default {
   name: 'User',
   components: {
     welcome,
     userinfo,
+    familyinfo,
+    aboutme,
     end
   },
   data () {
