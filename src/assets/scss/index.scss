@@ -1,5 +1,6 @@
 @import "size.scss";
 @import "color.scss";
+@import "swiper-slide.scss";
 
 /* 通用样式 start */
 .fl {
@@ -131,66 +132,4 @@ p {
   z-index: 9;
   background-color: rgba(0,0,0,.5);
 }
-
-.page {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  .page-header {
-    flex-grow: 0;
-    position: relative;
-    z-index: 1;
-  }
-  .page-body {
-    flex-grow: 1;
-    position: relative;
-    z-index: 2;
-  }
-  .page-footer {
-    flex-grow: 0;
-    position: relative;
-    height: 30%;
-    z-index: 1;
-    .page-footer-text-box {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 2;
-      padding-bottom: 2rem;
-      display: flex;
-      .page-footer-text {
-        margin: auto;
-        color: #fff;
-        font-family: Impact;
-        font-weight: 100;
-        text-shadow: 1px 1px #666;
-        .h2 {font-size: 2.4rem;}
-        p {font-size: 1.6rem;}
-      }
-    }
-    .page-footer-next-btn {
-      width: 3rem;
-      height: 2rem;
-      position: absolute;
-      left: 50%;
-      bottom: 2rem;
-      margin-left: -1.5rem;
-      animation: jump 1s infinite;
-      img {
-        display: block;
-        width: 100%;
-      }
-    }
-    @keyframes jump {
-      0% { transform: translateY(-20%); }
-      50% { transform: translateY(20%); }
-      100% { transform: translateY(-20%); }
-    }
-  }
-}
-
 /* 公用样式 end */
