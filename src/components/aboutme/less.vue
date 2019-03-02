@@ -34,7 +34,7 @@ export default {
   data () {
     return {
       show: false,
-      colorArr: ['#020e4e','#dbe3f3','#6581bf','#8da2d2','#ffffff','#6b86c3'],
+      colorArr: ['#020e4e', '#dbe3f3', '#6581bf', '#8da2d2', '#ffffff', '#6b86c3'],
       fragmentsTotal: 90
     }
   },
@@ -72,37 +72,37 @@ export default {
       let textBoxTl = new TimelineMax()
       let fragments = document.querySelectorAll('.page-aboutme-less .content-main-fragments-item')
       let textBoxObj = document.querySelectorAll('.page-aboutme-less .content-main-text')
-      fragmentsTl.set(fragments, { opacity:1, x:900, y:800, z:2050, transformPerspective:2000 })
-      textBoxTl.set(textBoxObj, { height:0, overflow:'hidden' })
+      fragmentsTl.set(fragments, {opacity: 1, x: 900, y: 800, z: 2050, transformPerspective: 2000})
+      textBoxTl.set(textBoxObj, {height: 0, overflow: 'hidden'})
       fragmentsTl.staggerTo(fragments, 2, {
         cycle: {
           bezier: function () {
             return [
-              {x:Math.random()*300+400, y:Math.random()*200+500,z:1050},
-              {x:Math.random()*300+200, y:Math.random()*200+300,z:550},
-              {x:Math.random()*100, y:Math.random()*200+300,z:500},
-              {x:Math.random()*100-300, y:Math.random()*100+200,z:450},
-              {x:Math.random()*100-300, y:Math.random()*20+60,z:400},
-              {x:Math.random()*50-150, y:Math.random()*100-200,z:350},
-              {x:Math.random()*100+150, y:Math.random()*100-200,z:300},
-              {x:Math.random()*100+220, y:Math.random()*100+20,z:400},
-              {x:Math.random()*10+100, y:Math.random()*100+30,z:350},
-              {x:0,y:0,z:0}
+              {x: Math.random() * 300 + 400, y: Math.random() * 200 + 500, z: 1050},
+              {x: Math.random() * 300 + 200, y: Math.random() * 200 + 300, z: 550},
+              {x: Math.random() * 100, y: Math.random() * 200 + 300, z: 500},
+              {x: Math.random() * 100 - 300, y: Math.random() * 100 + 200, z: 450},
+              {x: Math.random() * 100 - 300, y: Math.random() * 20 + 60, z: 400},
+              {x: Math.random() * 50 - 150, y: Math.random() * 100 - 200, z: 350},
+              {x: Math.random() * 100 + 150, y: Math.random() * 100 - 200, z: 300},
+              {x: Math.random() * 100 + 220, y: Math.random() * 100 + 20, z: 400},
+              {x: Math.random() * 10 + 100, y: Math.random() * 100 + 30, z: 350},
+              {x: 0, y: 0, z: 0}
             ]
           },
-          rotationX: function(){
-            return Math.random()*70
+          rotationX: function () {
+            return Math.random() * 70
           },
-          rotationY: function(){
-            return Math.random()*70
+          rotationY: function () {
+            return Math.random() * 70
           }
         },
-        onComplete: function() {
+        onComplete: function () {
           this.target.style.opacity = 0
         }
-      }, .011)
+      }, 0.011)
       textBoxTl.to(textBoxObj, 2, {
-        height: '40vh', overflow:'hidden'
+        height: '40vh', overflow: 'hidden'
       }, 2).to(textBoxObj, 0.5, {
         height: 'auto'
       })
@@ -127,7 +127,7 @@ export default {
         border: .5rem solid #fff;
         color: #fff;
         text-align: left;
-        background: rgba(0,0,0,.5);
+        background: rgba(0, 0, 0, .5);
         display: flex;
         flex-direction: column;
         .content-title {
@@ -138,7 +138,7 @@ export default {
           height: 0;
           border: $titleH/2 solid #a20000;
           border-right-color: transparent;
-          box-shadow: 0 .4rem .4rem -.3rem rgba(0,0,0,.75);
+          box-shadow: 0 .4rem .4rem -.3rem rgba(0, 0, 0, .75);
           &:after {
             content: '';
             position: absolute;
@@ -167,7 +167,7 @@ export default {
           .content-main-text-box {
             height: 0;
             flex-grow: 1;
-            overflow: hidden;
+            overflow: auto;
           }
           .content-main-fragments {
             position: absolute;
@@ -185,6 +185,8 @@ export default {
           }
         }
         .content-footer {
+          position: relative;
+          z-index: 2;
           height: 3rem;
           padding-top: 1rem;
           font-size: 1.2rem;
@@ -197,10 +199,16 @@ export default {
             }
           }
         }
-        @keyframes moreShake{
-          0%,100%{ transform: translate3d(0,0,0) }
-          25%{ transform: translate3d(-.3rem,0,0) }
-          75%{ transform: translate3d(.3rem,0,0) }
+        @keyframes moreShake {
+          0%, 100% {
+            transform: translate3d(0, 0, 0)
+          }
+          25% {
+            transform: translate3d(-.3rem, 0, 0)
+          }
+          75% {
+            transform: translate3d(.3rem, 0, 0)
+          }
         }
       }
     }

@@ -130,13 +130,14 @@ export default {
         display: flex;
         padding-bottom: 5vw;
         justify-content: space-between;
+        font-weight: 600;
         color: #fff;
         .navbar-item {
           width: 15.5vw;
           height: 15.5vw;
           padding: 1.5vw;
           border-radius: .5rem;
-          text-shadow: 0 1px 1px $Grey;
+          text-shadow: 0 1px 1px #999;
           background: #dedede;
           cursor: pointer;
           &.active {

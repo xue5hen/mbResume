@@ -44,8 +44,10 @@
       position: absolute;
       left: 50%;
       bottom: 2rem;
+      z-index: 3;
       margin-left: -1.5rem;
       animation: jump 1s infinite;
+      cursor: pointer;
       img {
         display: block;
         width: 100%;
