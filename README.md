@@ -1,6 +1,6 @@
-# yuanbiao
+# xiangqin
 
-> A Vue.js project
+> A XiangQin Template
 
 ## Build Setup
 
