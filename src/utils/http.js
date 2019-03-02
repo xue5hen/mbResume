@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 
 // below are all axios settings for local test
-axios.defaults.baseURL = (process.env.NODE_ENV === 'production') ? '/mbResume/static' : '/static'
+axios.defaults.baseURL = (process.env.NODE_ENV === 'production') ? '/xiangqin/static' : '/static'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 axios.interceptors.request.use(function (config) {
   if (config.method === 'post') {

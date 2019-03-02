@@ -3,7 +3,7 @@ import Vue from 'vue'
 
 Vue.use(Vuex)
 
-let baseUrl = (process.env.NODE_ENV === 'production') ? '/mbResume/static' : '/static'
+let baseUrl = (process.env.NODE_ENV === 'production') ? '/xiangqin/static' : '/static'
 
 export default new Vuex.Store({
   state: {
